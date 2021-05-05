@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+
+
 import './App.css';
 
 function App() {
+  const [isOn, setIsOn] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+  
+  useEffect(() => {
+    document.title = isOn ? 'ON' : 'OFF'
+  });
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>{isOn ? 'Yes, it is on!' : 'Off'}</p>
+        <p>Times Clicked: {clickCount}</p>
+      <button onClick={()=> {
+        setIsOn(!isOn);
+        setClickCount(clickCount +1)}
+      }>Switch</button>
     </div>
   );
 }
